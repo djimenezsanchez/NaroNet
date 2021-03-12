@@ -1,2 +1,2 @@
-# NaroNet
-NaroNet is the first machine learning pipeline to automatically quantify relevant cell phenotypes, neighborhoods and their interactions trained only with patient-level labels.
+# NaroNet: interpretable machine learning
+Trained only with patient-level labels, NaroNet quantifies the phenotypes, neighborhoods, and neighborhood interactions that have the highest influence on the predictive task.
