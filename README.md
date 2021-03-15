@@ -3,8 +3,11 @@ Trained only with patient-level labels, NaroNet quantifies the phenotypes, neigh
 
 ![alt text](https://github.com/djimenezsanchez/NaroNet/blob/main/models/MethodDescription.png?raw=true)
 
-# Installation
+### Installation
 This package requires Python 3.6 (or newer)
 Please first install TensorFlow (either TensorFlow 1 or 2) and Pytorch (v.1.4.0 or newer) by following the official instructions. For GPU support, it is crucial to install the specific versions of CUDA that are compatible with the respective version of TensorFlow and Pytorch.
 
-To install NaroNet: pip install naronet
+To install NaroNet:
+```sh
+pip install NaroNet
+```
