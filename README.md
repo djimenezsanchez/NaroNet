@@ -12,4 +12,9 @@ To install NaroNet:
 pip install NaroNet
 ```
 
-Documentation in progress...
+### Usage
+We provide an example workflow via Jupyter notebook that illustrate how this package can be used.
+
+| Experiment | Markers | Image format | Example Image | Description | 
+| :-- | :-: | :-:| :-:| :-- |
+| `POLE_example`| Fluorescence | 2D single channel| <img src="https://github.com/mpicbg-csbd/stardist/raw/master/images/example_fluo.jpg" title="example image fluo" width="120px" align="center">       | *Versatile (fluorescent nuclei)* and [subset of the DSB 2018 nuclei segmentation challenge dataset](https://github.com/mpicbg-csbd/stardist/releases/download/0.1.0/dsb2018.zip). | 
