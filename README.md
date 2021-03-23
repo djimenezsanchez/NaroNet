@@ -17,5 +17,5 @@ We provide an example workflow via Jupyter notebook that illustrate how this pac
 
 | Experiment | Technique | Example Image | Description | 
 | :-- | :-: | :-:| :-- |
-| `POLE_example`| 7-plex fluorescence imaging | <img src="https://github.com/djimenezsanchez/NaroNet/blob/main/images/example_endometrial_crop.tif" title="example image fluo" width="120px" align="center">  | [Endometrial cancer tissue exampe (download Example_POLE.zip)](https://zenodo.org/record/4630664#.YFoGLa9KiUk). | 
+| `POLE_example`| 7-plex fluorescence imaging | <img src="https://github.com/djimenezsanchez/NaroNet/blob/main/images/example_endometrial_crop.tif?raw=true" title="example image fluo" width="120px" align="center">  | [Endometrial cancer tissue exampe (download Example_POLE.zip)](https://zenodo.org/record/4630664#.YFoGLa9KiUk). | 
 
