@@ -15,7 +15,7 @@ pip install NaroNet
 ### Usage
 We provide an example workflow via Jupyter notebook that illustrate how this package can be used.
 
-| Experiment | Technique | Example Image | Description | 
-| :-- | :-: | :-:| :-- |
-| `POLE_example`| 7-plex fluorescence imaging | <img src="https://github.com/djimenezsanchez/NaroNet/blob/main/images/example_endometrial_crop.tif?raw=true" title="example image fluo" width="120px" align="center">  | [Endometrial cancer tissue exampe (download Example_POLE.zip)](https://zenodo.org/record/4630664#.YFoGLa9KiUk). | 
+| Experiment name | Technique | Example Image | Dataset link | Run in google colab |
+| :-- | :-: | :-:| :-- | :-- |
+| [POLE_example]()| 7-plex fluorescence imaging | <img src="https://github.com/djimenezsanchez/NaroNet/blob/main/images/example_endometrial_crop.tif?raw=true" title="example image fluo" width="120px" align="center">  | [Endometrial cancer tissue example (download Example_POLE.zip)](https://zenodo.org/record/4630664#.YFoGLa9KiUk). |[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/djimenezsanchez/NaroNet/blob/main/examples/google_colab_example.ipynb?authuser=1) |
 
