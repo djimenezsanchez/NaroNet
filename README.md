@@ -4,7 +4,7 @@
 ![alt text](https://github.com/djimenezsanchez/NaroNet/blob/main/images/Method_Overview.gif)
 
 ## Index (the usage of this code is explained step by step) 
-[Requirements and installation](#Requirements-and-installation) • [Preparing datasets](#Preparing-datasets) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Cite](#reference) • [Demo](#Demo) 
+[Requirements and installation](#Requirements-and-installation) • [Preparing datasets](#Preparing-datasets) • [Preprocessing](#Preprocessing) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Cite](#reference) • [Demo](#Demo) 
 
 ## Requirements and installation
 * Linux (Tested on Ubuntu 18.04)
@@ -68,20 +68,35 @@ Marker_4
 | image_3.tiff | subject_2 | 
 | ... | ... | ... |
 
-### Patch Contrastive Learning (PCL)
-The goal of the first step of our pipeline is to convert each high-dimensional  multiplex  image  of  the  cohort  into a list of low-dimensional embedding vectors. To this end, each image is divided into patches -our basic units of representation containin one or two cells of the tissue-, and each patch is converted by the PCL module -a properly trained CNN- into a low-dimensional vector that embeds both the morphological and spectral information of the patch.
 
-Our method assumes that multiplex image data (i.e., tiff) are stored under a folder named Experiment_1
+## Preprocessing
+The first step of our method is to 
 
 ```bash
-Experiment_1/
-	├── slide_1.svs
-	├── slide_2.svs
-	└── ...
+DATASET_DATA_DIR/
+    └── Raw_Data/
+        ├── Images/
+                ├── image_1.tiff
+                ├── image_2.tiff
+                └── ...
+        └── ...
+    └── Patch_Contrastive_Learning/
+    	├── Preprocessed Images/
+    		├── image_1.tiff
+		├── image_1.tiff
+		└── ...
+		
 ```
 
 
+### Patch Contrastive Learning (PCL)
+The goal of the first step of our pipeline is to convert each high-dimensional  multiplex  image  of  the  cohort  into a list of low-dimensional embedding vectors. To this end, each image is divided into patches -our basic units of representation containin one or two cells of the tissue-, and each patch is converted by the PCL module -a properly trained CNN- into a low-dimensional vector that embeds both the morphological and spectral information of the patch.
+
+Our method assumes that multiplex image data (i.e., tiff) are stored under a folder named, as explained in section [Preparing datasets](#Preparing-datasets)
+
 ## NaroNet
+
+
 
 ## BioInsights
 
