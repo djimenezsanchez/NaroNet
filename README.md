@@ -41,9 +41,9 @@ DATASET_DATA_DIR/
 		└── Patient_to_Image.xlsx (Optional)
 		
 ```
-Namely, each dataset is expected to be a subfolder (e.g., 'Raw_Data') under DATA_ROOT_DIR. In the 'Raw_Data/Images' our method assumes multiplex image data (i.e., multi-tiff). 
-In the 'Raw_Data/Experiment_Information' it is expected to have two files:
-* Channels.txt contains in each row the name of each marker/channel present in the multiplex image. In case the name of the row is 'None' it will be ignored and not loaded from the raw image.
+Each dataset is expected to have a subfolder (e.g., 'Raw_Data') under DATASET_DATA_DIR. In the 'Raw_Data/Images' multiplex image data (i.e., multi-tiff) is expected, but our method also works with RGB images. 
+In the 'Raw_Data/Experiment_Information' two files are expected:
+* Channels.txt contains per row the name of each marker/channel present in the multiplex image. In case the name of the row is 'None' it will be ignored and not loaded from the raw image.
 ```bash
 Marker_1
 Marker_2 
@@ -55,13 +55,21 @@ Marker_4
 
 | Image_Names | Type_1 | Type_2 | 
 | :-- | :-:| :-: |
-| Image_1.tiff | A  | X |
-| Image_2.tiff | None  | Y |
+| image_1.tiff | A  | X |
+| image_2.tiff | None  | Y |
 | ... | ... | ... |
 
-* Patient_to_Image.xlsx contains a table that specifies the image-level labels. In column 'Image_Names' each row specifies one image. The next columns (e.g., 'Type_1', 'Type_2', etc.) specify image-level information, where 'None' means that 
+* Patient_to_Image.xlsx (optional) can be utilized in case more than one image is available per subject. When this file exists, our method creates subject graphs with more than one image on them. In column 'Image_Names' each row specifies one image. In 'Subject_Name' each row specifies one subject, meaning that when two or more rows have the same subject identifier it will join images into one disjoint graph.
 
-Datasets are also expected to be prepared in a csv format containing at least 3 columns: **case_id**, **slide_id**, and 1 or more labels columns for the slide-level labels. Each **case_id** is a unique identifier for a patient, while the **slide_id** is a unique identifier for a slide that correspond to the name of an extracted feature .pt file. This is necessary because often one patient has multiple slides, which might also have different labels. When train/val/test splits are created, we also make sure that slides from the same patient do not go to different splits. The slide ids should be consistent with what was used during the feature extraction step. We provide 2 dummy examples of such dataset csv files in the **dataset_csv** folder: one for binary tumor vs. normal classification (task 1) and one for multi-class tumor_subtyping (task 2). 
+| Image_Name | Subject_Name |
+| :-- | :-:| 
+| image_1.tiff | subject_1 |
+| image_2.tiff | subject_1 | 
+| image_3.tiff | subject_2 | 
+| ... | ... | ... |
+
+
+When train/val/test splits are created, we also make sure that slides from the same patient do not go to different splits. The slide ids should be consistent with what was used during the feature extraction step. We provide 2 dummy examples of such dataset csv files in the **dataset_csv** folder: one for binary tumor vs. normal classification (task 1) and one for multi-class tumor_subtyping (task 2). 
 
 Dataset objects used for actual training/validation/testing can be constructed using the **Generic_MIL_Dataset** Class (defined in **datasets/dataset_generic.py**). Examples of such dataset objects passed to the models can be found in both **main.py** and **eval.py**. 
 
