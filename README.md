@@ -3,8 +3,8 @@
 
 ![alt text](https://github.com/djimenezsanchez/NaroNet/blob/main/images/Method_Overview.gif)
 
-## Index  
-[Requirements and installation](#Requirements-and-installation) • [Preparing datasets](#Preparing-datasets) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Cite](#reference) • [Demo](#Demo) 
+## Index (the usage of this code is explained step by step) 
+[Requirements and installation](#Requirements-and-installation) • [Preparing datasets](#Preparing-datasets) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Cite](#reference) • [Demo](#Demo) 
 
 ## Requirements and installation
 * Linux (Tested on Ubuntu 18.04)
@@ -51,7 +51,7 @@ None
 Marker_4    
 ```
 
-* Image_Labels.xlsx contains the image-level labels. In column 'Image_Names' each row specifies one image. The next columns (e.g., 'Type_1', 'Type_2', etc.) specify image-level information, where 'None' means that there is no information available for this subject and therefore it has to be excluded from the experiment. 
+* Image_Labels.xlsx contains the image-level labels. In column 'Image_Names' each row specifies one image. The next columns (e.g., 'Type_1', 'Type_2', etc.) specify image-level information, where 'None' means that there is no information available for this subject and therefore it has to be excluded from the experiment. In the case more than one image is available per subject, but you don't want to merge it in one subject graph it is possible to add one column named "Subject_Names", when this is included the method will make it sure that iamges from the same subject do nt go to different train/val/test splits.
 
 | Image_Names | Type_1 | Type_2 | 
 | :-- | :-:| :-: |
@@ -59,7 +59,7 @@ Marker_4
 | image_2.tiff | None  | Y |
 | ... | ... | ... |
 
-* Patient_to_Image.xlsx (optional) can be utilized in case more than one image is available per subject. When this file exists, our method creates subject graphs with more than one image on them. In column 'Image_Names' each row specifies one image. In 'Subject_Name' each row specifies one subject, meaning that when two or more rows have the same subject identifier it will join images into one disjoint graph.
+* Patient_to_Image.xlsx (optional) can be utilized in case more than one image is available per subject. When this file exists, our method creates subject graphs with more than one image on them. In column 'Image_Names' each row specifies one image. In 'Subject_Name' each row specifies one subject, meaning that when two or more rows have the same subject identifier it will join images into one disjoint graph. Please notice that when this file exists, you should change 'Image_Names' column in 'Image_Labels.xlsx' with the new subject names (e.g., change 'image_1.tiff' with 'subject_1').
 
 | Image_Name | Subject_Name |
 | :-- | :-:| 
@@ -67,38 +67,6 @@ Marker_4
 | image_2.tiff | subject_1 | 
 | image_3.tiff | subject_2 | 
 | ... | ... | ... |
-
-
-When train/val/test splits are created, we also make sure that slides from the same patient do not go to different splits. The slide ids should be consistent with what was used during the feature extraction step. We provide 2 dummy examples of such dataset csv files in the **dataset_csv** folder: one for binary tumor vs. normal classification (task 1) and one for multi-class tumor_subtyping (task 2). 
-
-Dataset objects used for actual training/validation/testing can be constructed using the **Generic_MIL_Dataset** Class (defined in **datasets/dataset_generic.py**). Examples of such dataset objects passed to the models can be found in both **main.py** and **eval.py**. 
-
-For training, look under main.py:
-```python 
-if args.task == 'task_1_tumor_vs_normal':
-    args.n_classes=2
-    dataset = Generic_MIL_Dataset(csv_path = 'dataset_csv/tumor_vs_normal_dummy_clean.csv',
-                            data_dir= os.path.join(args.data_root_dir, 'tumor_vs_normal_feat_resnet'),
-                            shuffle = False, 
-                            seed = args.seed, 
-                            print_info = True,
-                            label_dict = {'normal_tissue':0, 'tumor_tissue':1},
-                            label_col = 'label',
-                            ignore=[])
-```
-The user would need to pass:
-* csv_path: the path to the dataset csv file
-* data_dir: the path to saved .pt features
-* label_dict: a dictionary that maps labels in the label column to numerical values
-* label_col: name of the label column (optional, by default it's 'label')
-* ignore: labels to ignore (optional, by default it's an empty list)
-
-Finally, the user should add this specific 'task' specified by this dataset object in the --task arguments as shown below:
-
-```python
-parser.add_argument('--task', type=str, choices=['task_1_tumor_vs_normal',  'task_2_tumor_subtyping'])
-```
-
 
 ### Patch Contrastive Learning (PCL)
 The goal of the first step of our pipeline is to convert each high-dimensional  multiplex  image  of  the  cohort  into a list of low-dimensional embedding vectors. To this end, each image is divided into patches -our basic units of representation containin one or two cells of the tissue-, and each patch is converted by the PCL module -a properly trained CNN- into a low-dimensional vector that embeds both the morphological and spectral information of the patch.
