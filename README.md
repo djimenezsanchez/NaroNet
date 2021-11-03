@@ -2,6 +2,8 @@
 ***TL;DR:*** NaroNet is an end-to-end interpretable learning method that can be used for the discovery of elements from the tumor microenvironment (phenotypes, cellular neighborhoods, and tissue areas) that have the highest predictive ability to predict subject-level labels. NaroNet works without any ROI extraction or patch-level annotation, just needing multiplex images and their corresponding patient-level labels. See our [*paper*](https://arxiv.org/abs/2103.05385).  
 
 ![alt text](https://github.com/djimenezsanchez/NaroNet/blob/main/images/Method_Overview.gif)
+<img src='https://github.com/djimenezsanchez/NaroNet/blob/main/images/Method_Overview.gif' />
+
 
 ## Index (the usage of this code is explained step by step) 
 [Requirements and installation](#Requirements-and-installation) • [Preparing datasets](#Preparing-datasets) • [Preprocessing](#Preprocessing) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Cite](#reference) • [Demo](#Demo) 
