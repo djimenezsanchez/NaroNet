@@ -1,10 +1,10 @@
 # NaroNet: discovery of tumor microenvironment elements from highly multiplexed images.
 ***TL;DR:*** NaroNet is an interpretable method that can be used for the discovery of elements from the tumor microenvironment (phenotypes, cellular neighborhoods, and tissue areas) that have the highest predictive ability to predict subject-level labels. NaroNet works without any ROI extraction or patch-level annotation, just needing multiplex images and their corresponding patient-level labels. See our [*paper*](https://arxiv.org/abs/2103.05385).  
 
-![alt text](https://github.com/djimenezsanchez/NaroNet/blob/main/images/folder_overview.gif)
+![alt text](https://github.com/djimenezsanchez/NaroNet/blob/main/images/Method_Overview.gif)
 
 ##  
-[Pre-requisites](#pre-requisites) • [Installation](INSTALLATION.md) • [Segmentation and Patching](#wsi-segmentation-and-patching) • [Feature Extraction](#weakly-supervised-learning-using-slide-level-labels-with-clam) • [Weakly Supervised Training](#Training-Splits) • [Testing](#Testing-and-Evaluation-Script) • [Trained Models](#Trained-Model-Checkpoints) • [Heatmap Visualization](#Heatmap-Visualization) • [Examples](#examples) • [Pre-print](https://arxiv.org/abs/2004.09666) • [Demo](http://clam.mahmoodlab.org) • [Cite](#reference)
+[Installation](#Installation) • [Usage](#Usage) • [Patch Contrastive Learning](#Patch Contrastive Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Cite](#reference)
 
 ### Installation
 This package requires Python 3.6 (or newer)
@@ -21,6 +21,14 @@ We provide an example workflow via Jupyter notebook that illustrate how this pac
 | Experiment name | Example Image | Dataset link | Run in google colab |
 | :-- | :-:| :-- | :-- |
 | Discover tumoral differences between patient types (POLE gene mutated vs. POLE gene non-mutated) | <img src="https://github.com/djimenezsanchez/NaroNet/blob/main/images/example_endometrial_crop.png" title="example image fluo" width="320px" align="center">  | [Endometrial cancer tissue example (download Example_POLE.zip)](https://zenodo.org/record/4630664#.YFoGLa9KiUk). |[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/djimenezsanchez/NaroNet/blob/main/examples/google_colab_example.ipynb?authuser=1) |
+
+### Patch Contrastive Learning
+
+### NaroNet
+
+### BioInsights
+
+### Citation
 
 
 
