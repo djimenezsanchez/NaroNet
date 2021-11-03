@@ -1,10 +1,10 @@
 # NaroNet: discovery of tumor microenvironment elements from highly multiplexed images.
-***TL;DR:*** NaroNet is an interpretable method that can be used for the discovery of elements from the tumor microenvironment (phenotypes, cellular neighborhoods, and tissue areas) that have the highest predictive ability to predict subject-level labels. NaroNet works without any ROI extraction or patch-level annotation, just needing multiplex images and their corresponding patient-level labels. See our [*paper*](https://arxiv.org/abs/2103.05385).  
+***TL;DR:*** NaroNet is an end-to-end interpretable learning method that can be used for the discovery of elements from the tumor microenvironment (phenotypes, cellular neighborhoods, and tissue areas) that have the highest predictive ability to predict subject-level labels. NaroNet works without any ROI extraction or patch-level annotation, just needing multiplex images and their corresponding patient-level labels. See our [*paper*](https://arxiv.org/abs/2103.05385).  
 
 ![alt text](https://github.com/djimenezsanchez/NaroNet/blob/main/images/Method_Overview.gif)
 
 ##  
-[Installation](#Installation) • [Usage](#Usage) • [Patch Contrastive Learning](#Patch Contrastive Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Cite](#reference)
+[Installation](#Installation) • [Usage](#Usage) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Cite](#reference)
 
 ### Installation
 This package requires Python 3.6 (or newer)
