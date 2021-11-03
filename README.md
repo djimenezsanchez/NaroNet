@@ -37,10 +37,12 @@ DATASET_DATA_DIR/
                 └── ...
         └── Experiment_Information/
                 ├── Channels.txt                
-                └── Image_Labels.xlsx
+                ├── Image_Labels.xlsx
+		└── Patient_to_Image.xlsx (Optional)
+		
 ```
 Namely, each dataset is expected to be a subfolder (e.g., 'Raw_Data') under DATA_ROOT_DIR. In the 'Raw_Data/Images' our method assumes multiplex image data (i.e., multi-tiff). 
-In the 'Raw_Data/Experimenta_Information' it is expected to have two files:
+In the 'Raw_Data/Experiment_Information' it is expected to have two files:
 * Channels.txt contains in each row the name of each marker/channel present in the multiplex image. In case the name of the row is 'None' it will be ignored and not loaded from the raw image.
 ```bash
 Marker_1
@@ -49,18 +51,15 @@ None
 Marker_4    
 ```
 
-* Image_Labels.xlsx contains a table that specifies the image-level labels. In column 'Image_Names' each row specifies one image. The next columns (e.g., 'Type_1', 'Type_2', etc.) specify subject level information
-| Image_Names  | Type_1 | Type_2 |
-| Image_1.tiff | A      | X      |
-| Image_2.tiff | None   | Y      |
-| Image_3.tiff | B      | None   |
-| ...          | ...    | ...    |
+* Image_Labels.xlsx contains the image-level labels. In column 'Image_Names' each row specifies one image. The next columns (e.g., 'Type_1', 'Type_2', etc.) specify image-level information, where 'None' means that there is no information available for this subject and therefore it has to be excluded from the experiment. 
 
 | Image_Names | Type_1 | Type_2 | 
 | :-- | :-:| :-: |
 | Image_1.tiff | A  | X |
 | Image_2.tiff | None  | Y |
 | ... | ... | ... |
+
+* Patient_to_Image.xlsx contains a table that specifies the image-level labels. In column 'Image_Names' each row specifies one image. The next columns (e.g., 'Type_1', 'Type_2', etc.) specify image-level information, where 'None' means that 
 
 Datasets are also expected to be prepared in a csv format containing at least 3 columns: **case_id**, **slide_id**, and 1 or more labels columns for the slide-level labels. Each **case_id** is a unique identifier for a patient, while the **slide_id** is a unique identifier for a slide that correspond to the name of an extracted feature .pt file. This is necessary because often one patient has multiple slides, which might also have different labels. When train/val/test splits are created, we also make sure that slides from the same patient do not go to different splits. The slide ids should be consistent with what was used during the feature extraction step. We provide 2 dummy examples of such dataset csv files in the **dataset_csv** folder: one for binary tumor vs. normal classification (task 1) and one for multi-class tumor_subtyping (task 2). 
 
