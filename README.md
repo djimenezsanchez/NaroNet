@@ -3,10 +3,10 @@
 
 ![alt text](https://github.com/djimenezsanchez/NaroNet/blob/main/images/Method_Overview.gif)
 
-##  
+## Index  
 [Requirements and installation](#Requirements-and-installation) • [Preparing datasets](#Preparing-datasets) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Cite](#reference) • [Demo](#Demo) 
 
-### Requirements and installation
+## Requirements and installation
 * Linux (Tested on Ubuntu 18.04)
 * NVIDIA GPU (Tested on Nvidia GeForce RTX 2080 Ti x 4 on GPU server, and Nvidia P100, K80 GPUs on Google Cloud)
 
@@ -25,7 +25,7 @@ To install NaroNet:
 pip install NaroNet
 ```
 
-### Preparing datasets
+## Preparing datasets
 When NaroNet is executed it expects the target folder (e.g., 'DATASET_DATA_DIR') to be organized as follows:
 
 ```bash
@@ -105,11 +105,11 @@ Experiment_1/
 ```
 
 
-### NaroNet
+## NaroNet
 
-### BioInsights
+## BioInsights
 
-### Demo
+## Demo
 We provide an example workflow via Jupyter notebook that illustrate how this package can be used.
 
 | Experiment name | Example Image | Dataset link | Run in google colab |
@@ -117,7 +117,7 @@ We provide an example workflow via Jupyter notebook that illustrate how this pac
 | Discover tumoral differences between patient types (POLE gene mutated vs. POLE gene non-mutated) | <img src="https://github.com/djimenezsanchez/NaroNet/blob/main/images/example_endometrial_crop.png" title="example image fluo" width="320px" align="center">  | [Endometrial cancer tissue example (download Example_POLE.zip)](https://zenodo.org/record/4630664#.YFoGLa9KiUk). |[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/djimenezsanchez/NaroNet/blob/main/examples/google_colab_example.ipynb?authuser=1) |
 
 
-### Citation
+## Citation
 
 
 
