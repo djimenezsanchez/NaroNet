@@ -94,12 +94,12 @@ DATASET_DATA_DIR/
                 ├── image_2.tiff
                 └── ...
         └── ...
-!    └── Patch_Contrastive_Learning/
-    	├── Preprocessed_Images/
-    		├── Num_patches_perImage.csv
-		├── image_1.npy
-		├── image_2.npy		
-		└── ...
++   └── Patch_Contrastive_Learning/
++ 	├── Preprocessed_Images/
++    		├── Num_patches_perImage.csv
++		├── image_1.npy
++		├── image_2.npy		
++		└── ...
 		
 ```
 
