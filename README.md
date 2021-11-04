@@ -84,7 +84,7 @@ The firt step is to preprocess the image dataset and convert the raw image data 
 * `args['PCL_ZscoreNormalization']`: use z-score normalization so that each marker in the full cohort presents a mean 0 and a standard deviation of 1 (default: True)
 * `args['PCL_patch_size']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels)
 
-Once it is executed it will create the followin folder (in red):
+Once it is executed it will create the followin folder (in orange):
 
 ```diff
 DATASET_DATA_DIR/
@@ -94,7 +94,7 @@ DATASET_DATA_DIR/
                 ├── image_2.tiff
                 └── ...
         └── ...
-    └── Patch_Contrastive_Learning/
+!    └── Patch_Contrastive_Learning/
     	├── Preprocessed_Images/
     		├── Num_patches_perImage.csv
 		├── image_1.npy
