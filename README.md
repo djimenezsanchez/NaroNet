@@ -4,7 +4,7 @@
 <img src='https://github.com/djimenezsanchez/NaroNet/blob/main/images/Method_Overview.gif' />
 
 ## Index (the usage of this code is explained step by step) 
-[Requirements and installation](#Requirements-and-installation) • [Preparing datasets](#Preparing-datasets) • [Preprocessing](#Preprocessing) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Cite](#reference) • [Demo](#Demo) 
+[Requirements and installation](#Requirements-and-installation) • [Preparing datasets](#Preparing-datasets) • [Preparing parameter configuration](#Preparing-parameter-configuration) • [Preprocessing](#Preprocessing) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Cite](#reference) • [Demo](#Demo) 
 
 ## Requirements and installation
 * Linux (Tested on Ubuntu 18.04)
@@ -69,9 +69,22 @@ Marker_4
 | image_3.tiff | subject_2 | 
 | ... | ... | ... |
 
+## Preparing parameter configuration
+In the following sections (i.e., preprocessing, PCL, NaroNet, BioInsights) several parameters are defined and required to be set. Each parameter will be explained in each section, however all of them should be specified in the file named 'DatasetParameters.py', which is located in the folder 'NaroNet/src/utils'. Change it to your own configuration, where 'DATASET_DATA_DIR' is the name of the folder where the image data is stored. Use other examples as template. 
+```python
+def parameters(path, debug):
+    if 'DATASET_DATA_DIR' in path:        
+        args['param1'] = value1
+	args['param2'] = value2
+	...		
+```
 
 ## Preprocessing
-The firt step is to preprocess the image dataset and convert the raw image data to .npy files. To this end, the 'NaroNet.preprocess_images' function inputs image data, and, if requested, performs z-score normalization. converts it to   
+The firt step is to preprocess the image dataset and convert the raw image data to .npy files. To this end, 'NaroNet.preprocess_images' function is used. It uses the following parameters:
+* `args['PCL_ZscoreNormalization']`: use z-score normalization so that each marker in the full cohort presents a mean 0 and a standard deviation of 1 (default: True)
+* `args['PCL_patch_size']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels)
+
+Once it is executed it will create the followin folder (in red):
 
 ```bash
 DATASET_DATA_DIR/
@@ -82,18 +95,28 @@ DATASET_DATA_DIR/
                 └── ...
         └── ...
     └── Patch_Contrastive_Learning/
-    	├── Preprocessed Images/
-    		├── image_1.tiff
-		├── image_1.tiff
+    	├── Preprocessed_Images/
+    		├── Num_patches_perImage.csv
+		├── image_1.npy
+		├── image_2.npy		
 		└── ...
 		
 ```
 
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
+```
 
 ### Patch Contrastive Learning (PCL)
-The goal of the first step of our pipeline is to convert each high-dimensional  multiplex  image  of  the  cohort  into a list of low-dimensional embedding vectors. To this end, each image is divided into patches -our basic units of representation containin one or two cells of the tissue-, and each patch is converted by the PCL module -a properly trained CNN- into a low-dimensional vector that embeds both the morphological and spectral information of the patch.
+The goal of PCL in our pipeline is to convert each high-dimensional multiplex image of the cohort into a list of low-dimensional embedding vectors. To this end, each image is divided into patches -our basic units of representation containin one or two cells of the tissue-, and each patch is converted by the PCL module -a properly trained CNN- into a low-dimensional vector that embeds both the morphological and spectral information of the patch.
 
-Our method assumes that multiplex image data (i.e., tiff) are stored under a folder named, as explained in section [Preparing datasets](#Preparing-datasets)
+To this end, 'NaroNet.preprocess_images' function is used. It uses the following parameters:
+* `args['PCL_ZscoreNormalization']`: use z-score normalization so that each marker in the full cohort presents a mean 0 and a standard deviation of 1 (default: True)
+* `args['PCL_patch_size']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels)
 
 ## NaroNet
 
