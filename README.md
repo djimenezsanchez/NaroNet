@@ -1,9 +1,7 @@
 # NaroNet: discovery of tumor microenvironment elements from highly multiplexed images.
 ***TL;DR:*** NaroNet is an end-to-end interpretable learning method that can be used for the discovery of elements from the tumor microenvironment (phenotypes, cellular neighborhoods, and tissue areas) that have the highest predictive ability to predict subject-level labels. NaroNet works without any ROI extraction or patch-level annotation, just needing multiplex images and their corresponding patient-level labels. See our [*paper*](https://arxiv.org/abs/2103.05385).  
 
-![alt text](https://github.com/djimenezsanchez/NaroNet/blob/main/images/Method_Overview.gif)
 <img src='https://github.com/djimenezsanchez/NaroNet/blob/main/images/Method_Overview.gif' />
-
 
 ## Index (the usage of this code is explained step by step) 
 [Requirements and installation](#Requirements-and-installation) • [Preparing datasets](#Preparing-datasets) • [Preprocessing](#Preprocessing) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Cite](#reference) • [Demo](#Demo) 
@@ -43,7 +41,7 @@ DATASET_DATA_DIR/
 		└── Patient_to_Image.xlsx (Optional)
 		
 ```
-Each dataset is expected to have a subfolder (e.g., 'Raw_Data') under DATASET_DATA_DIR. In the 'Raw_Data/Images' multiplex image data (i.e., multi-tiff) is expected, but our method also works with RGB images. 
+In the 'Raw_Data/Images' folder we expect multiplex image data consisting of multi-page '.tiff' files with one channel/marker per page. Please notice that our method also works with RGB images. 
 In the 'Raw_Data/Experiment_Information' two files are expected:
 * Channels.txt contains per row the name of each marker/channel present in the multiplex image. In case the name of the row is 'None' it will be ignored and not loaded from the raw image.
 ```bash
@@ -58,7 +56,8 @@ Marker_4
 | Image_Names | Type_1 | Type_2 | 
 | :-- | :-:| :-: |
 | image_1.tiff | A  | X |
-| image_2.tiff | None  | Y |
+| image_2.tiff | None | Y |
+| image_3.tiff | B | Y |
 | ... | ... | ... |
 
 * Patient_to_Image.xlsx (optional) can be utilized in case more than one image is available per subject. When this file exists, our method creates subject graphs with more than one image on them. In column 'Image_Names' each row specifies one image. In 'Subject_Name' each row specifies one subject, meaning that when two or more rows have the same subject identifier it will join images into one disjoint graph. Please notice that when this file exists, you should change 'Image_Names' column in 'Image_Labels.xlsx' with the new subject names (e.g., change 'image_1.tiff' with 'subject_1').
@@ -72,7 +71,7 @@ Marker_4
 
 
 ## Preprocessing
-The first step of our method is to 
+The firt step is to preprocess the image dataset and convert the raw image data to .npy files. To this end, the 'NaroNet.preprocess_images' function inputs image data, and, if requested, performs z-score normalization. converts it to   
 
 ```bash
 DATASET_DATA_DIR/
