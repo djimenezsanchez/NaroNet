@@ -144,8 +144,20 @@ DATASET_DATA_DIR/
 ```
 
 ## NaroNet
-NaroNet inputs graphs of patches (stored in 'DATASET_DATA_DIR/Patch_Contrastive_Learning/Image_Patch_Representation') and subject-level labels (stored in 'DATASET_DATA_DIR/Raw_Data/Experiment_Information/Image_Labels.xlsx') and outputs subject-level predictions from learned phenotypes, neighborhoods, and areas. To this end, 
+NaroNet inputs graphs of patches (stored in 'DATASET_DATA_DIR/Patch_Contrastive_Learning/Image_Patch_Representation') and subject-level labels (stored in 'DATASET_DATA_DIR/Raw_Data/Experiment_Information/Image_Labels.xlsx') to output subject-level predictions from the abundance of learned phenotypes, neighborhoods, and areas. To this end, execute 'NaroNet.NaroNet.run_NaroNet' with the following parameters (most relevant parameters are shown, where additional ones are explained in DatasetParameters.py):
 
+* `args['experiment_Label']`: Subject-level column labels from Image_Labels.xlsx to specify how you want to differentiate subjects. You can provide more than one column label name to perform multilabel classification. Example: ['Type_1','Type_2']
+* `args['epochs']`: Number of epochs to train NaroNet. Default: 20 (epochs)
+* `args['weight_decay']`: Weight decay value. Default: 0.0001 
+* `args['batch_size']`: Batch size. Default: 8 (subjects) 
+* `args['lr']`: Learning rate. Default: 0.001
+* `args['folds']`: Number of folds to perform cross-validation. Default: 10 (folds)
+* `args['device']`: Specify whether to use cpu or gpu. Examples: 'cpu', 'cuda:0', 'cuda:1'
+* `args['clusters1']`: Number of phenotypes to be learned by NaroNet. Example: 10 (phenotypes) 
+* `args['clusters2']`: Number of neighborhoods to be learned by NaroNet. Example: 11 (neighborhoods) 
+* `args['clusters3']`: Number of areas to be learned by NaroNet. Example: 6 (areas) 
+
+When executed, NaroNet selects the images included in the experiment and creates a graph of patches in the format .pt which is optimal for pytorch.
 
 ## BioInsights
 
