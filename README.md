@@ -84,7 +84,7 @@ The firt step is to preprocess the image dataset and convert the raw image data 
 * `args['PCL_ZscoreNormalization']`: use z-score normalization so that each marker in the full cohort presents a mean 0 and a standard deviation of 1 (default: True)
 * `args['PCL_patch_size']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels)
 
-Once it is executed it will create the followin folder (in orange):
+Once it is executed it will create the following folder (in green):
 
 ```diff
 DATASET_DATA_DIR/
@@ -95,7 +95,7 @@ DATASET_DATA_DIR/
                 └── ...
         └── ...
 +   └── Patch_Contrastive_Learning/
-+ 	├── Preprocessed_Images/
++ 	└── Preprocessed_Images/
 +    		├── Num_patches_perImage.csv
 +		├── image_1.npy
 +		├── image_2.npy		
@@ -103,20 +103,40 @@ DATASET_DATA_DIR/
 		
 ```
 
-```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
-```
-
 ### Patch Contrastive Learning (PCL)
 The goal of PCL in our pipeline is to convert each high-dimensional multiplex image of the cohort into a list of low-dimensional embedding vectors. To this end, each image is divided into patches -our basic units of representation containin one or two cells of the tissue-, and each patch is converted by the PCL module -a properly trained CNN- into a low-dimensional vector that embeds both the morphological and spectral information of the patch.
 
-To this end, 'NaroNet.preprocess_images' function is used. It uses the following parameters:
-* `args['PCL_ZscoreNormalization']`: use z-score normalization so that each marker in the full cohort presents a mean 0 and a standard deviation of 1 (default: True)
-* `args['PCL_patch_size']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels)
+To this end, 'NaroNet.patch_contrastive_learning' function is used. It uses the following parameters:
+* `args['PCL_embedding_dimensions']`: use z-score normalization so that each marker in the full cohort presents a mean 0 and a standard deviation of 1 (default: True)
+* `args['PCL_batch_size']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels)
+* `args['PCL_epochs']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels) 
+* `args['PCL_patch_size']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels) 
+* `args['PCL_alpha_L']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels)
+* `args['PCL_width_CNN']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels) 
+* `args['PCL_depth_CNN']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels) 
+
+Once it is executed it will create the following folder (in green):
+
+```diff
+DATASET_DATA_DIR/
+    └── Raw_Data/
+        ├── Images/
+                ├── image_1.tiff
+                ├── image_2.tiff
+                └── ...
+        └── ...
+    └── Patch_Contrastive_Learning/
+ 	├── Preprocessed_Images/    		
+		└── ...
++	├── Model_Training_xxxx/
++    		├── model.ckpt-0.index
++		├── model.ckpt-0-meta
++		├── model.ckpt-0.data-00000-of-00001
++		├── event.out.tfevents...
++		├── checkpoint
++		└── ...
+		
+```
 
 ## NaroNet
 
