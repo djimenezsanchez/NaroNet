@@ -3,6 +3,8 @@
 
 <img src='https://github.com/djimenezsanchez/NaroNet/blob/main/images/Method_Overview.gif' />
 
+© [Daniel Jiménez-Sánchez - CIMA Universidad de Navarra](https://cima.cun.es/investigacion/programas-investigacion/programa-tumores-solidos/grupo-investigacion-modelos-preclinicos-herramientas-analisis) - This code is made available under the GNU GPLv3 License and is available for non-commercial academic purposes. 
+
 ## Index (the usage of this code is explained step by step) 
 [Requirements and installation](#Requirements-and-installation) • [Preparing datasets](#Preparing-datasets) • [Preparing parameter configuration](#Preparing-parameter-configuration) • [Preprocessing](#Preprocessing) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Cite](#reference) • [Demo](#Demo) 
 
@@ -117,7 +119,7 @@ To this end, 'NaroNet.patch_contrastive_learning' function is used. It uses the 
 
 When executed, PCL checks whether a trained CNN is properly trained in the folder named 'Model_Training_xxxx', where xxxx are random letters. In case the folder does not exist, PCL creates a new model, stores it in a new 'Model_Training_xxxx' folder, and trains it using the parameter configuration. To check whether the CNN has been trained successfully, check the 'Model_training_xxxx' folder and open the 'Contrast_accuracy_plot.png', where you should expect a final contrast accuracy value over 50%. 
 
-Once the CNN is trained, execute again 'NaroNet.preprocess_images' to infer image patch representations from the whole dataset. Here, image patches are introduced in the CNN sequentially getting representation vectors back. For each image in the dataset a new one vector, creating a list of vectors
+Once the CNN is trained, execute again 'NaroNet.preprocess_images' to infer image patch representations from the whole dataset. Here, image patches are introduced in the CNN sequentially getting representation vectors back. For each image in the dataset, a npy data structure is created consisting of a matrix, where rows are patches, and columns are representation values. Here, the two first column values specify the x and y position of the patch in the image. In case Patient_to_Image.xlsx exists the npy structure will contain patches from more than one image.
 
 Once executed you should expect the following folder structure, where Model_Training_xxxx is created during training, and Image_Patch_Representation during inference (in green):
 
@@ -139,12 +141,10 @@ DATASET_DATA_DIR/
 +    		├── image_1.npy
 +		├── image_2.npy
 +		└── ...
-		
-		
 ```
 
 ## NaroNet
-
+NaroNet inputs graphs of patches (stored in 'DATASET_DATA_DIR/Patch_Contrastive_Learning/Image_Patch_Representation') and subject-level labels (stored in 'DATASET_DATA_DIR/Raw_Data/Experiment_Information/Image_Labels.xlsx') and outputs subject-level predictions from learned phenotypes, neighborhoods, and areas. To this end, 
 
 
 ## BioInsights
