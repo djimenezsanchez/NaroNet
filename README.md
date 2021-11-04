@@ -86,7 +86,7 @@ The firt step is to preprocess the image dataset and convert the raw image data 
 
 Once it is executed it will create the followin folder (in red):
 
-```bash
+```diff
 DATASET_DATA_DIR/
     └── Raw_Data/
         ├── Images/
