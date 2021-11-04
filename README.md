@@ -115,15 +115,15 @@ To this end, 'NaroNet.patch_contrastive_learning' function is used. It uses the 
 * `args['PCL_width_CNN']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels) 
 * `args['PCL_depth_CNN']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels) 
 
-Once it is executed it will create the following folder (in green):
+When executed, PCL checks whether a trained CNN is properly trained in the folder named 'Model_Training_xxxx', where xxxx are random letters. In case the folder does not exist, PCL creates a new model, stores it in a new 'Model_Training_xxxx' folder, and trains it using the parameter configuration. To check whether the CNN has been trained successfully, check the 'Model_training_xxxx' folder and open the 'Contrast_accuracy_plot.png', where you should expect a final contrast accuracy value over 50%. 
+
+Once the CNN is trained, execute again 'NaroNet.preprocess_images' to infer image patch representations from the whole dataset. Here, image patches are introduced in the CNN sequentially getting representation vectors back. For each image in the dataset a new one vector, creating a list of vectors
+
+Once executed you should expect the following folder structure, where Model_Training_xxxx is created during training, and Image_Patch_Representation during inference (in green):
 
 ```diff
 DATASET_DATA_DIR/
-    └── Raw_Data/
-        ├── Images/
-                ├── image_1.tiff
-                ├── image_2.tiff
-                └── ...
+    └── Raw_Data/        
         └── ...
     └── Patch_Contrastive_Learning/
  	├── Preprocessed_Images/    		
@@ -135,6 +135,11 @@ DATASET_DATA_DIR/
 +		├── event.out.tfevents...
 +		├── checkpoint
 +		└── ...
++	└── Image_Patch_Representation/
++    		├── image_1.npy
++		├── image_2.npy
++		└── ...
+		
 		
 ```
 
