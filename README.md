@@ -22,7 +22,7 @@ pip install torch-cluster -f https://pytorch-geometric.com/whl/torch-${TORCH}+${
 pip install torch-geometric
 ```
 
-Install NaroNet:
+Install NaroNet downloading this repository or through pip:
 ```sh
 pip install NaroNet
 ```
