@@ -12,9 +12,9 @@
 * Linux (Tested on Ubuntu 18.04)
 * NVIDIA GPU (Tested on Nvidia GeForce RTX 2080 Ti x 4 on GPU server, and Nvidia P100, K80 GPUs on Google Cloud)
 
-To install NaroNet we recommend creating a new [*anaconda*](https://www.anaconda.com/distribution/) environment with TensorFlow (either TensorFlow 1 or 2) and Pytorch (v.1.4.0 or newer). For GPU support, it is crucial to install the specific versions of CUDA that are compatible with the respective version of TensorFlow and Pytorch.
+To install NaroNet we recommend creating a new [*anaconda*](https://www.anaconda.com/distribution/) environment with TensorFlow (either TensorFlow 1 or 2) and Pytorch (v.1.4.0 or newer). For GPU support, install the versions of CUDA that are compatible with TensorFlow's and Pytorch's versions.
 
-Once inside the created environment, install pytorch-geometric where ${CUDA} and ${TORCH} should be replaced by the specific CUDA version (cpu, cu92, cu101, cu102, cu110, cu111, cu113) and PyTorch version (1.4.0, 1.5.0, 1.6.0, 1.7.0, 1.7.1, 1.8.0, 1.8.1, 1.9.0, 1.9.1, 1.10.0):
+Once inside the created environment, install pytorch-geometric where ${CUDA} and ${TORCH} should be replaced by the specific CUDA version (cpu, cu92, cu101, cu102, cu110, cu111, cu113) and PyTorch version (1.4.0, 1.5.0, 1.6.0, 1.7.0, 1.7.1, 1.8.0, 1.8.1, 1.9.0, 1.9.1, 1.10.0). Run the following commands in your console:
 ```sh
 pip install torch-scatter -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
 pip install torch-sparse -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
@@ -22,13 +22,13 @@ pip install torch-cluster -f https://pytorch-geometric.com/whl/torch-${TORCH}+${
 pip install torch-geometric
 ```
 
-To install NaroNet:
+Install NaroNet:
 ```sh
 pip install NaroNet
 ```
 
 ## Preparing datasets
-When NaroNet is executed it expects the target folder (e.g., 'DATASET_DATA_DIR') to be organized as follows:
+Create the target folder (e.g., 'DATASET_DATA_DIR') with your image and subject-level information using the following folder structure:
 
 ```bash
 DATASET_DATA_DIR/
@@ -43,7 +43,7 @@ DATASET_DATA_DIR/
 		└── Patient_to_Image.xlsx (Optional)
 		
 ```
-In the 'Raw_Data/Images' folder we expect multiplex image data consisting of multi-page '.tiff' files with one channel/marker per page. Please notice that our method also works with RGB images. 
+In the 'Raw_Data/Images' folder we expect multiplex image data consisting of multi-page '.tiff' files with one channel/marker per page.
 In the 'Raw_Data/Experiment_Information' two files are expected:
 * Channels.txt contains per row the name of each marker/channel present in the multiplex image. In case the name of the row is 'None' it will be ignored and not loaded from the raw image.
 ```bash
@@ -53,16 +53,16 @@ None
 Marker_4    
 ```
 
-* Image_Labels.xlsx contains the image-level labels. In column 'Image_Names' each row specifies one image. The next columns (e.g., 'Type_1', 'Type_2', etc.) specify image-level information, where 'None' means that there is no information available for this subject and therefore it has to be excluded from the experiment. In the case more than one image is available per subject, but you don't want to merge it in one subject graph it is possible to add one column named "Subject_Names", when this is included the method will make it sure that iamges from the same subject do nt go to different train/val/test splits.
+* Image_Labels.xlsx contains the image names and their corresponding image-level labels. In column 'Image_Names' image names are specified. The next columns (e.g., 'Control vs. Treatment', 'Survival', etc.) specify image-level information, where 'None' means that the image is excluded from the experiment. In case more than one image is available per subject and you want to make it sure that images from the same subject don't go to different train/val/test splits, it is possible to add one column named "Subject_Names" specifying, for each image, the subject to whom it corresponds.
 
-| Image_Names | Type_1 | Type_2 | 
+| Image_Names | Control vs. Treatment | Survival | 
 | :-- | :-:| :-: |
-| image_1.tiff | A  | X |
-| image_2.tiff | None | Y |
-| image_3.tiff | B | Y |
+| image_1.tiff | Control  | Poor |
+| image_2.tiff | None | High |
+| image_3.tiff | Treatment | High |
 | ... | ... | ... |
 
-* Patient_to_Image.xlsx (optional) can be utilized in case more than one image is available per subject. When this file exists, our method creates subject graphs with more than one image on them. In column 'Image_Names' each row specifies one image. In 'Subject_Name' each row specifies one subject, meaning that when two or more rows have the same subject identifier it will join images into one disjoint graph. Please notice that when this file exists, you should change 'Image_Names' column in 'Image_Labels.xlsx' with the new subject names (e.g., change 'image_1.tiff' with 'subject_1').
+* Patient_to_Image.xlsx (optional) can be utilized in case more than one image is available per subject and you want to merge them into one subject-graph. When images have the same subject identifier (e.g., 'Subject_Name') they will be joined into one disjoint graph. Please notice that when this file exists, you should change 'Image_Names' column in 'Image_Labels.xlsx' with the new subject names (e.g., change 'image_1.tiff' with 'subject_1').
 
 | Image_Name | Subject_Name |
 | :-- | :-:| 
@@ -72,7 +72,7 @@ Marker_4
 | ... | ... | ... |
 
 ## Preparing parameter configuration
-In the following sections (i.e., preprocessing, PCL, NaroNet, BioInsights) several parameters are defined and required to be set. Each parameter will be explained in each section, however all of them should be specified in the file named 'DatasetParameters.py', which is located in the folder 'NaroNet/src/utils'. Change it to your own configuration, where 'DATASET_DATA_DIR' is the name of the folder where the image data is stored. Use other examples as template. 
+In the following sections (i.e., preprocessing, PCL, NaroNet, BioInsights) several parameters are required to be set. Although parameters will be explained in each section, all of them should be specified in the file named 'DatasetParameters.py', which is located in the folder 'NaroNet/src/utils'. Change it to your own configuration, where 'DATASET_DATA_DIR' is your target folder. Use examples as template: 
 ```python
 def parameters(path, debug):
     if 'DATASET_DATA_DIR' in path:        
@@ -83,10 +83,10 @@ def parameters(path, debug):
 
 ## Preprocessing
 The firt step is to preprocess the image dataset and convert the raw image data to .npy files. To this end, 'NaroNet.preprocess_images' function is used. It uses the following parameters:
-* `args['PCL_ZscoreNormalization']`: use z-score normalization so that each marker in the full cohort presents a mean 0 and a standard deviation of 1 (default: True)
-* `args['PCL_patch_size']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels)
+* `args['PCL_ZscoreNormalization']`: use z-score normalization so that each marker in the full cohort shows a mean 0 and a standard deviation of 1. Default: True.
+* `args['PCL_patch_size']`: size of the sides of a square image patch that will used as basic unit of interpretability. Default: 15 (pixels).
 
-Once it is executed it will create the following folder (in green):
+Once it is executed it will create the following green folder:
 
 ```diff
 DATASET_DATA_DIR/
@@ -106,9 +106,9 @@ DATASET_DATA_DIR/
 ```
 
 ### Patch Contrastive Learning (PCL)
-The goal of PCL in our pipeline is to convert each high-dimensional multiplex image of the cohort into a list of low-dimensional embedding vectors. To this end, each image is divided into patches -our basic units of representation containin one or two cells of the tissue-, and each patch is converted by the PCL module -a properly trained CNN- into a low-dimensional vector that embeds both the morphological and spectral information of the patch.
+The goal of PCL in our pipeline is to convert each high-dimensional multiplex image of the cohort into a list of low-dimensional embedding vectors. To this end, each image is divided into patches -our basic units of representation containing one or two cells of the tissue-, and each patch is converted by the PCL module -a properly trained CNN- into a low-dimensional vector that embeds both the morphological and spectral information of the patch.
 
-To this end, 'NaroNet.patch_contrastive_learning' function is used. It uses the following parameters:
+To this end, 'NaroNet.patch_contrastive_learning' function is used with the following parameters:
 * `args['PCL_embedding_dimensions']`: use z-score normalization so that each marker in the full cohort presents a mean 0 and a standard deviation of 1 (default: True)
 * `args['PCL_batch_size']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels)
 * `args['PCL_epochs']`: size of the square image patch that will be processed by the PCL module. Default: 15 (pixels) 
