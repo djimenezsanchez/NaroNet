@@ -195,6 +195,11 @@ NaroNet's learned phenotypes, neighborhoods, and areas (stored in 'Cell_type_ass
 
 <img src='https://github.com/djimenezsanchez/NaroNet/blob/main/images/Figura_ConfidencePredictions_ithub.gif' />
 
+* Differential_abundance_analysis: provides information about the differential TME composition analysis (p-values specify predictive power of TMEs). It also provides statistical tests showing if found TMEs are cohort-differenting. Examples of predicted subjects are stored in the folder 'Locate_TME_in_image'.
+
+<img src='https://github.com/djimenezsanchez/NaroNet/blob/main/images/Figura_Areas_github.gif' />
+
+
 ```diff
 DATASET_DATA_DIR/
     ├── Raw_Data/        
@@ -206,15 +211,15 @@ DATASET_DATA_DIR/
 		└── ...
 +   └── BioInsights/
 +    	└── Survival/ (experiment name example)
-+		├── Phenotypes/
-+
-+ 		├── Neighborhoods/
-+ 		└── Areas/
-
-+		└── Cross_validation_results/
-+			├── ROC_AUC_Survival.png
-+			├── ConfusionMatrix_Survival.png
++		├── Cell_type_characterization/
 +			└── ...
++		├── Cell_type_abundance/
++			└── ...
++		├── Differential_abundance_analysis/
++			└── ...
++ 		└── Locate_TME_in_image/
++			└── ...
+
 ```
 ## Demo
 We provide an example workflow via Jupyter notebook that illustrate how this package can be used.
