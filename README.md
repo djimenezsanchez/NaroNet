@@ -185,7 +185,9 @@ DATASET_DATA_DIR/
 ```
 
 ## BioInsights
-NaroNet's learned phenotypes, neighborhoods, and areas that are stored in 'Cell_type_assignment' for each subject in the cohort, can be analyzed _a posteriori_ by the BioInsights module. Here, elements of the tumor microenvironment are extracted, visualized, and associated to subject types. Execute 'NaroNet.NaroNet_dataset.get_BioInsights' with the same parameters as done in the NaroNet module to automatically generate the following files (in green):
+NaroNet's learned phenotypes, neighborhoods, and areas (stored in 'Cell_type_assignment'), can be analyzed _a posteriori_ by the BioInsights module. Here, elements of the tumor microenvironment are extracted, visualized, and associated to subject types. Execute 'NaroNet.NaroNet_dataset.get_BioInsights' with the same parameters as done in the NaroNet module to automatically generate the following folders:
+
+* Cell_type_characterization: Contains heatmaps with the marker expression levels of phenotypes, neighborhoods, and areas. Contains examples 
 
 ```diff
 DATASET_DATA_DIR/
@@ -198,14 +200,11 @@ DATASET_DATA_DIR/
 		└── ...
 +   └── BioInsights/
 +    	└── Survival/ (experiment name example)
-+		├── Cell_type_characterization/
-+    			├── cluster_assignment_Index_0_ClustLvl_10.npy (phenotypes)
-+    			├── cluster_assignment_Index_0_ClustLvl_11.npy (neighborhoods)
-+    			├── cluster_assignment_Index_0_ClustLvl_6.npy (areas)
-+    			├── cluster_assignment_Index_1_ClustLvl_10.npy (phenotypes)
-+    			├── cluster_assignment_Index_1_ClustLvl_11.npy (neighborhoods)
-+    			├── cluster_assignment_Index_1_ClustLvl_6.npy (areas)
-+			└── ...
++		├── Phenotypes/
++
++ 		├── Neighborhoods/
++ 		└── Areas/
+
 +		└── Cross_validation_results/
 +			├── ROC_AUC_Survival.png
 +			├── ConfusionMatrix_Survival.png
