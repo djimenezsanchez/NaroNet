@@ -191,6 +191,10 @@ NaroNet's learned phenotypes, neighborhoods, and areas (stored in 'Cell_type_ass
 
 <img src='https://github.com/djimenezsanchez/NaroNet/blob/main/images/Figura_Phentypes.gif' />
 
+* Cell_type_abundance: Contains heatmaps with the abundance of phenotypes, neighborhoods, and areas per subject. This information is then used to perform the differential TME composition analysis.
+
+<img src='https://github.com/djimenezsanchez/NaroNet/blob/main/images/Figura_Phentypes.gif' />
+
 ```diff
 DATASET_DATA_DIR/
     ├── Raw_Data/        
