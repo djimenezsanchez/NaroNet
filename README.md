@@ -229,12 +229,14 @@ We provide an example workflow via Jupyter notebook that illustrate how this pac
 | Discover tumoral differences between patient types (POLE gene mutated vs. POLE gene non-mutated) | <img src="https://github.com/djimenezsanchez/NaroNet/blob/main/images/example_endometrial_crop.png" title="example image fluo" width="320px" align="center">  | [Endometrial cancer tissue example (download Example_POLE.zip)](https://zenodo.org/record/4630664#.YFoGLa9KiUk). |[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/djimenezsanchez/NaroNet/blob/main/examples/google_colab_example.ipynb?authuser=1) |
 
 
-## Citation (please cite this paper in case our method or parts of it were helpful in your research)
+## Citation (please cite this paper in case our method or parts of it were helpful in your work)
+```diff
 @article{jimenez2021naronet,
   title={NaroNet: Discovery of tumor microenvironment elements from highly multiplexed images},
-  author={Jim{\'e}nez-S{\'a}nchez, Daniel and Ariz, Mikel and Chang, Hang and Matias-Guiu, Xavier and de Andrea, Carlos E and Ortiz-de-Sol{\'o}rzano, Carlos},
+  author={Jiménez-Sánchez, Daniel and Ariz, Mikel and Chang, Hang and Matias-Guiu, Xavier and de Andrea, Carlos E and Ortiz-de-Solórzano, Carlos},
   journal={arXiv preprint arXiv:2103.05385},
   year={2021}
 }
+```
 
 
