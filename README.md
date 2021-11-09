@@ -1,5 +1,5 @@
 # NaroNet: discovery of tumor microenvironment elements from highly multiplexed images.
-***TL;DR:*** NaroNet is an end-to-end interpretable learning method that can be used for the discovery of elements from the tumor microenvironment (phenotypes, cellular neighborhoods, and tissue areas) that have the highest predictive ability to classify subjects into predefined types. NaroNet works without any ROI extraction or patch-level annotation, just needing multiplex images and their corresponding subject-level labels. See our [*paper*](https://arxiv.org/abs/2103.05385).  
+***TL;DR:*** NaroNet is an end-to-end interpretable learning method that can be used for the discovery of elements from the tumor microenvironment (phenotypes, cellular neighborhoods, and tissue areas) that have the highest predictive ability to classify subjects into predefined types. NaroNet works without any ROI extraction or patch-level annotation, just needing multiplex images and their corresponding subject-level labels. See our [*paper*](https://arxiv.org/abs/2103.05385) for further description of NaroNet.  
 
 <img src='https://github.com/djimenezsanchez/NaroNet/blob/main/images/Method_Overview.gif' />
 
