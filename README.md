@@ -6,7 +6,7 @@
 © [Daniel Jiménez Sánchez - CIMA University of Navarra](https://cima.cun.es/en/research/research-programs/solid-tumors-program/research-group-preclinical-models-preclinical-tools-analysis) - This code is made available under the GNU GPLv3 License and is available for non-commercial academic purposes. 
 
 ## Index (the usage of this code is explained step by step) 
-[Requirements and installation](#Requirements-and-installation) • [Preparing datasets](#Preparing-datasets) • [Preparing parameter configuration](#Preparing-parameter-configuration) • [Preprocessing](#Preprocessing) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Demo](#Demo)  • [Cite](#Citation-(please-cite-this-paper-in-case-our-method-or-parts-of-it-were-helpful-in-your-work)) 
+[Requirements and installation](#Requirements-and-installation) • [Preparing datasets](#Preparing-datasets) • [Preparing parameter configuration](#Preparing-parameter-configuration) • [Preprocessing](#Preprocessing) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Demo](#Demo)  • [Cite](#Citation) 
 
 ## Requirements and installation
 * Linux (Tested on Ubuntu 18.04)
@@ -105,7 +105,7 @@ DATASET_DATA_DIR/
 		
 ```
 
-### Patch Contrastive Learning (PCL)
+## Patch Contrastive Learning (PCL)
 The goal of PCL in our pipeline is to convert each high-dimensional multiplex image of the cohort into a list of low-dimensional embedding vectors. To this end, each image is divided into patches -our basic units of representation containing one or two cells of the tissue-, and each patch is converted by the PCL module -a properly trained CNN- into a low-dimensional vector that embeds both the morphological and spectral information of the patch.
 
 To this end, 'NaroNet.patch_contrastive_learning' function is used with the following parameters:
@@ -229,7 +229,8 @@ We provide an example workflow via Jupyter notebook that illustrate how this pac
 | Discover tumoral differences between patient types (POLE gene mutated vs. POLE gene non-mutated) | <img src="https://github.com/djimenezsanchez/NaroNet/blob/main/images/example_endometrial_crop.png" title="example image fluo" width="320px" align="center">  | [Endometrial cancer tissue example (download Example_POLE.zip)](https://zenodo.org/record/4630664#.YFoGLa9KiUk). |[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/djimenezsanchez/NaroNet/blob/main/examples/google_colab_example.ipynb?authuser=1) |
 
 
-## Citation (please cite this paper in case our method or parts of it were helpful in your work)
+## Citation
+Please cite this paper in case our method or parts of it were helpful in your work.
 ```diff
 @article{jimenez2021naronet,
   title={NaroNet: Discovery of tumor microenvironment elements from highly multiplexed images},
