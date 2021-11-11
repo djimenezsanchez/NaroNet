@@ -45,7 +45,7 @@ DATASET_DATA_DIR/
 ```
 In the 'Raw_Data/Images' folder we expect multiplex image data consisting of multi-page '.tiff' files with one channel/marker per page.
 In the 'Raw_Data/Experiment_Information' two files are expected:
-* Channels.txt contains per row the name of each marker/channel present in the multiplex image. In case the name of the row is 'None' it will be ignored and not loaded from the raw image.
+* Channels.txt contains per row the name of each marker/channel present in the multiplex image. In case the name of the row is 'None' it will be ignored and not loaded from the raw image. See example [file](https://github.com/djimenezsanchez/NaroNet/blob/main/examples/Channels.txt) or example below:
 ```bash
 Marker_1
 Marker_2 
@@ -53,7 +53,7 @@ None
 Marker_4    
 ```
 
-* Image_Labels.xlsx contains the image names and their corresponding image-level labels. In column 'Image_Names' image names are specified. The next columns (e.g., 'Control vs. Treatment', 'Survival', etc.) specify image-level information, where 'None' means that the image is excluded from the experiment. In case more than one image is available per subject and you want to make it sure that images from the same subject don't go to different train/val/test splits, it is possible to add one column named "Subject_Names" specifying, for each image, the subject to whom it corresponds.
+* Image_Labels.xlsx contains the image names and their corresponding image-level labels. In column 'Image_Names' image names are specified. The next columns (e.g., 'Control vs. Treatment', 'Survival', etc.) specify image-level information, where 'None' means that the image is excluded from the experiment. In case more than one image is available per subject and you want to make it sure that images from the same subject don't go to different train/val/test splits, it is possible to add one column named "Subject_Names" specifying, for each image, the subject to whom it corresponds. See example [file](https://github.com/djimenezsanchez/NaroNet/blob/main/examples/Image_Labels.xlsx) or example below:
 
 | Image_Names | Control vs. Treatment | Survival | 
 | :-- | :-:| :-: |
@@ -62,7 +62,7 @@ Marker_4
 | image_3.tiff | Treatment | High |
 | ... | ... | ... |
 
-* Patient_to_Image.xlsx (optional) can be utilized in case more than one image is available per subject and you want to merge them into one subject-graph. When images have the same subject identifier (e.g., 'Subject_Name') they will be joined into one disjoint graph. Please notice that when this file exists, you should change 'Image_Names' column in 'Image_Labels.xlsx' with the new subject names (e.g., change 'image_1.tiff' with 'subject_1').
+* Patient_to_Image.xlsx (optional) can be utilized in case more than one image is available per subject and you want to merge them into one subject-graph. When images have the same subject identifier (e.g., 'Subject_Name') they will be joined into one disjoint graph. Please notice that when this file exists, you should change 'Image_Names' column in 'Image_Labels.xlsx' with the new subject names (e.g., change 'image_1.tiff' with 'subject_1'). See example [file](https://github.com/djimenezsanchez/NaroNet/blob/main/examples/Patient_to_Image.xlsx) or example below:
 
 | Image_Name | Subject_Name |
 | :-- | :-:| 
@@ -72,7 +72,7 @@ Marker_4
 | ... | ... | ... |
 
 ## Preparing parameter configuration
-In the following sections (i.e., preprocessing, PCL, NaroNet, BioInsights) several parameters are required to be set. Although parameters will be explained in each section, all of them should be specified in the file named 'DatasetParameters.py', which is located in the folder 'NaroNet/src/utils'. Change it to your own configuration, where 'DATASET_DATA_DIR' is your target folder. Use examples as template: 
+In the following sections (i.e., preprocessing, PCL, NaroNet, BioInsights) several parameters are required to be set. Although parameters will be explained in each section, all of them should be specified in the file named 'DatasetParameters.py', which is located in the folder 'NaroNet/src/utils'. Change it to your own configuration, where 'DATASET_DATA_DIR' is your target folder. See example [file](https://github.com/djimenezsanchez/NaroNet/blob/main/src/NaroNet/utils/DatasetParameters.py) or example below:
 ```python
 def parameters(path, debug):
     if 'DATASET_DATA_DIR' in path:        
@@ -86,7 +86,7 @@ The firt step is to preprocess the image dataset and convert the raw image data 
 * `args['PCL_ZscoreNormalization']`: use z-score normalization so that each marker in the full cohort shows a mean of 0 and a standard deviation of 1. Default: True.
 * `args['PCL_patch_size']`: size of the sides of a square image patch that will used as basic unit of interpretability. Default: 15 (pixels).
 
-Once it is executed it will create the following green folder:
+Once it is executed it will create the following folders (in green):
 
 ```diff
 DATASET_DATA_DIR/
