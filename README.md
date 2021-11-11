@@ -105,7 +105,7 @@ DATASET_DATA_DIR/
 		
 ```
 
-## Patch Contrastive Learning (PCL)
+## Patch Contrastive Learning
 The goal of PCL in our pipeline is to convert each high-dimensional multiplex image of the cohort into a list of low-dimensional embedding vectors. To this end, each image is divided into patches -our basic units of representation containing one or two cells of the tissue-, and each patch is converted by the PCL module -a properly trained CNN- into a low-dimensional vector that embeds both the morphological and spectral information of the patch.
 
 To this end, 'NaroNet.patch_contrastive_learning' function is used with the following parameters:
