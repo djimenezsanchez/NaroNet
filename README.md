@@ -235,8 +235,8 @@ Please cite this paper in case our method or parts of it were helpful in your wo
 @article{jimenez2021naronet,
   title={NaroNet: Discovery of tumor microenvironment elements from highly multiplexed images},
   author={Jiménez-Sánchez, Daniel and Ariz, Mikel and Chang, Hang and Matias-Guiu, Xavier and de Andrea, Carlos E and Ortiz-de-Solórzano, Carlos},
-  journal={arXiv preprint arXiv:2103.05385},
-  year={2021}
+  journal={Medical image analysis, vol. 78 102384.},
+  year={2022}
 }
 ```
 
