@@ -12,19 +12,28 @@
 * Linux (Tested on Ubuntu 18.04)
 * NVIDIA GPU (Tested on Nvidia GeForce RTX 2080 Ti x 4 on GPU server, and Nvidia P100, K80 GPUs on Google Cloud)
 
-To install NaroNet we recommend creating a new [*anaconda*](https://www.anaconda.com/distribution/) environment with TensorFlow (either TensorFlow 1 or 2) and Pytorch (v.1.4.0 or newer). For GPU support, install the versions of CUDA that are compatible with TensorFlow's and Pytorch's versions.
-
-Once inside the created environment, install pytorch-geometric where ${CUDA} and ${TORCH} should be replaced by the specific CUDA version (cpu, cu92, cu101, cu102, cu110, cu111, cu113) and PyTorch version (1.4.0, 1.5.0, 1.6.0, 1.7.0, 1.7.1, 1.8.0, 1.8.1, 1.9.0, 1.9.1, 1.10.0). Run the following commands in your console replacing ${CUDA} and ${TORCH}:
+To install NaroNet we recommend creating a new [*anaconda*](https://www.anaconda.com/distribution/) environment with Pytorch (v.1.4.0 or newer). For GPU support, install the versions of CUDA that are compatible with Pytorch's versions.
 ```sh
-pip install torch-scatter -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
-pip install torch-sparse -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
-pip install torch-cluster -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
-pip install torch-geometric
+conda create --name NaroNet python=3.8
 ```
 
-Install NaroNet downloading this repository or through pip:
+Once inside the created environment, install pytorch and pytorch-geometric:
 ```sh
-pip install NaroNet
+conda install pytorch torchvision torchaudio torchvision cudatoolkit=11.3 -c pytorch
+conda install pyg -c pyg
+```
+
+Now you can install the following libraries using pip:
+```sh
+pip install hyperopt
+pip install xlsxwriter
+pip install matplotlib
+pip install seaborn
+pip install imgaug
+sudo apt-get install python3-opencv 
+pip install tensorboard
+pip install openTSNE
+pip install openpyxl
 ```
 
 ## Preparing datasets
