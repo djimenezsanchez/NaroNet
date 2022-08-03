@@ -90,46 +90,21 @@ def parameters(path, debug):
 	...		
 ```
 
-## Preprocessing
-The firt step is to preprocess the image dataset and convert the raw image data to .npy files. To this end, 'NaroNet.preprocess_images' function is used. It uses the following parameters:
-* `args['PCL_ZscoreNormalization']`: use z-score normalization so that each marker in the full cohort shows a mean of 0 and a standard deviation of 1. Default: True.
-* `args['PCL_patch_size']`: size of the sides of a square image patch that will used as basic unit of interpretability. Default: 15 (pixels).
-
-Once it is executed it will create the following folders (in green):
-
-```diff
-DATASET_DATA_DIR/
-    ├── Raw_Data/
-        ├── Images/
-                ├── image_1.tiff
-                ├── image_2.tiff
-                └── ...
-        └── ...
-+   └── Patch_Contrastive_Learning/
-+ 	└── Preprocessed_Images/
-+    		├── Num_patches_perImage.csv
-+		├── image_1.npy
-+		├── image_2.npy		
-+		└── ...
-		
-```
-
 ## Patch Contrastive Learning
 The goal of PCL in our pipeline is to convert each high-dimensional multiplex image of the cohort into a list of low-dimensional embedding vectors. To this end, each image is divided into patches -our basic units of representation containing one or two cells of the tissue-, and each patch is converted by the PCL module -a properly trained CNN- into a low-dimensional vector that embeds both the morphological and spectral information of the patch.
 
 To this end, 'NaroNet.patch_contrastive_learning' function is used with the following parameters:
-* `args['PCL_embedding_dimensions']`: size of the embedding vector generated for each image patch. Default: 256 (values)
-* `args['PCL_batch_size']`: batch size of image patches used to train PCL's CNN. Example: 80 (image patches)
-* `args['PCL_epochs']`: epochs to train PCL's CNN. Example: 500 (epochs) 
-* `args['PCL_alpha_L']`: size ratio between image crops and augmented views used to train PCL's CNN. Default: 1.15. 
-* `args['PCL_width_CNN']`: CNN's width multiplication factor. Default: 2.
-* `args['PCL_depth_CNN']`: CNN's depth. Default: 101 (ResNet101).
+* `args['PCL_Epochs']`: # Number of epochs to run PCL. Increase the numnber so that PCL achieves at least a 95% of top1 accuracy. Default: 100 (epochs).
+* `args['PCL_N_Workers']`: # Number of workers to parallelize data loading. A higher number of workers will result in a faster execution but will require more RAM memory usage. Default: 1 (workers).
+* `args['PCL_N_Crops_per_Image']`: # Number of image crops used to train the model in each iteration. Higher number of crops will learn more features from patches from one image but requires more RAM and GPU memory usage. Default: 100 (crops per image)
+* `args['PCL_Batch_Size']`: # Number of images used per iteration. A higher batch size results in learning more features and doing it in a more stable way but will require more RAM and GPU memory usage. Default: 4 (images).    
+* `args['PCL_eliminate_Black_Background']`:# Whether to eliminate from the training the black background. Use it for Multiplex fluorescence images. Default = True
 
-When executed, PCL checks whether a trained CNN is already in a previously created folder named 'Model_Training_xxxx', where xxxx are random letters. In case the folder does not exist, PCL creates a new model, stores it in a new 'Model_Training_xxxx' folder, and trains it using the parameter configuration. To check whether the CNN has been trained successfully, check the 'Model_training_xxxx' folder and open the 'Contrast_accuracy_plot.png', where you should expect a final contrast accuracy value over 50%. 
 
-Once the CNN is trained, execute again 'NaroNet.preprocess_images' to infer image patch representations from the whole dataset. Here, image patches are introduced in the CNN sequentially getting representation vectors back. For each image in the dataset, a npy data structure is created consisting of a matrix, where rows are patches, and columns are representation values. Here, the two first column values specify the x and y position of the patch in the image that will be later used to create a graph. In case Patient_to_Image.xlsx exists the npy structure will contain patches from more than one image.
-
-Once executed you should expect the following folder structure, where Model_Training_xxxx is created during training, and Image_Patch_Representation during inference (in green):
+When executed, PCL checks whether a CNN is already created in a folder named 'Model ':
+- If the folder does not exist, PCL begins training a new model using the parameter configuration and creates a 'Model' folder in which to store it. 
+- If the folder exists and there are less than 10 model checkpoints, PCL trains from a previously created model checkpoint (e.g., ‘checkpoint_0150.pth.tar’).
+- If the folder exists and there are 10 checkpoints within it, PCL does not train.
 
 ```diff
 DATASET_DATA_DIR/
