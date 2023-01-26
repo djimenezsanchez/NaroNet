@@ -3,7 +3,7 @@
 
 <img src='https://github.com/djimenezsanchez/NaroNet/blob/main/images/Method_Overview_big.png' />
 
-© [Daniel Jiménez Sánchez - CIMA University of Navarra](https://cima.cun.es/en/research/research-programs/solid-tumors-program/research-group-preclinical-models-preclinical-tools-analysis) - This code is made available under the GNU GPLv3 License and is available for non-commercial academic purposes. 
+© [Daniel Jiménez Sánchez] - This code is made available under the GNU GPLv3 License and is available for non-commercial academic purposes. 
 
 ## Index (the usage of this code is explained step by step) 
 [Requirements and installation](#Requirements-and-installation) • [Preparing datasets](#Preparing-datasets) • [Preparing parameter configuration](#Preparing-parameter-configuration) • [Preprocessing](#Preprocessing) • [Patch Contrastive Learning](#Patch-Contrastive-Learning) • [NaroNet](#NaroNet) • [BioInsights](#BioInsights) • [Demo](#Demo)  • [Cite](#Citation) 
