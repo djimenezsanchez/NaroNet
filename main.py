@@ -20,7 +20,7 @@ def main(path):
     # Architecture Search
     # params = architecture_search(path,params,possible_params)
 
-    # run_NaroNet(path,params)
+    run_NaroNet(path,params)
     
     # BioInsights
     get_BioInsights(path,params)
