@@ -99,7 +99,7 @@ To this end, 'NaroNet.patch_contrastive_learning' function is used with the foll
 * `args['PCL_epochs']`: epochs to train PCL's CNN. Example: 500 (epochs) 
 * `args['PCL_alpha_L']`: size ratio between image crops and augmented views used to train PCL's CNN. Default: 1.15. 
 * `args['PCL_width_CNN']`: CNN's width multiplication factor. Default: 2.
-* `args['PCL_depth_CNN']`: CNN's depth. Default: 101 (ResNet101).
+* `args['PCL_depth_CNN']`: CNN's depth [50 or 101]. Default: 101 (ResNet101),.
 
 When executed, PCL checks whether a trained CNN is already in a previously created folder named 'Model_Training_xxxx', where xxxx are random letters. In case the folder does not exist, PCL creates a new model, stores it in a new 'Model_Training_xxxx' folder, and trains it using the parameter configuration. To check whether the CNN has been trained successfully, check the 'Model_training_xxxx' folder and open the 'Contrast_accuracy_plot.png', where you should expect a final contrast accuracy value over 50%. 
 
