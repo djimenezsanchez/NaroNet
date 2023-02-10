@@ -1586,7 +1586,7 @@ def parameters(path, debug):
         args['PCL_alpha_L']=1.2 # The value of alpha_L in the manuscript
         args['PCL_ZscoreNormalization']=True        
         args['PCL_width_CNN']=2 # [1, 2, 4]           
-        args['PCL_depth_CNN']=101#4 # [1, 2, 4] 
+        args['PCL_depth_CNN']=50#4 # [1, 2, 4] 
 
         # Label you want to infer with respect the images.
         args['experiment_Label'] = ['POLE Mutation','Copy number variation','MSI Status','Tumour Type'] # Copy number variation, POLE Mutation, MSI Status, Tumour Type
