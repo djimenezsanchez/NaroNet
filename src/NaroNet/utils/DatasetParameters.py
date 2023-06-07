@@ -1580,10 +1580,10 @@ def parameters(path, debug):
     elif 'Endometrial_POLE' in path:            
         # Patch contrastive learning parameters
         args['PCL_embedding_dimensions'] = 256
-        args['PCL_batch_size']=80
-        args['PCL_epochs']=1000
+        args['PCL_batch_size']=160
+        args['PCL_epochs']=500
         args['PCL_patch_size']=15
-        args['PCL_alpha_L']=1.2 # The value of alpha_L in the manuscript
+        args['PCL_alpha_L']=1.15 # The value of alpha_L in the manuscript
         args['PCL_ZscoreNormalization']=True        
         args['PCL_width_CNN']=2 # [1, 2, 4]           
         args['PCL_depth_CNN']=50#4 # [1, 2, 4] 
