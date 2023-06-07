@@ -434,10 +434,10 @@ def preprocess_for_train(image, height, width,
     image = random_crop_with_resize(image, height, width)
   if flip:
     image = tf.image.random_flip_left_right(image)
-  if color_distort:
-    image = random_color_jitter(image)
+  # if color_distort:
+  #  image = random_color_jitter(image)
   image = tf.reshape(image, [height, width, chan])
-  image = tf.clip_by_value(image, 0., 1.)
+  # image = tf.clip_by_value(image, 0., 1.)
   return image
 
 
@@ -456,7 +456,7 @@ def preprocess_for_eval(image, height, width, crop=True):
   if crop:
     image = center_crop(image, height, width, crop_proportion=CROP_PROPORTION)
   image = tf.reshape(image, [height, width, 3])
-  image = tf.clip_by_value(image, 0., 1.)
+  # image = tf.clip_by_value(image, 0., 1.)
   return image
 
 
