@@ -284,8 +284,6 @@ def load_patches_for_step(is_training, batch_size, dataset, patch_size,n_images_
     data = np.stack([dataset.get_patches_from_image(indx) for indx in range(min(dataset.n_images,n_images_iteration))])    
     data = np.reshape(data,(data.shape[0]*data.shape[1],data.shape[2],data.shape[3],data.shape[4]))
     data = np.float32(data)
-    data = data - data.mean((0,1,2),keepdims=True)
-    data = data/(data.std((0,1,2),keepdims=True)+1e-16)
     data = tf.data.Dataset.from_tensor_slices(data)     
     data = data.repeat(-1)
     data = data.map(map_fn)
