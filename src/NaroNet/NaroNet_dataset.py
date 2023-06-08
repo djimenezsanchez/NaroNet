@@ -1055,18 +1055,12 @@ class NaroNet_dataset(torch.utils.data.Dataset):
         # Eliminate those patients 
         IndexAndClass = [iac for iac in IndexAndClass if 'None'!=iac[2][0]]
         
-        # # Obtain Neigh-to-Pheno, and Area-to-Neigh heatmap.
-        # for ClusteringTrheshold in [0,50,75,90,95]:
-        #     Area_to_Neighborhood_to_Phenotype(self,clusters,IndexAndClass,num_classes,ClusteringTrheshold)
+        # Obtain Neigh-to-Pheno, and Area-to-Neigh heatmap.
+        for ClusteringTrheshold in [0,50,75,90,95]:
+            Area_to_Neighborhood_to_Phenotype(self,clusters,IndexAndClass,num_classes,ClusteringTrheshold)
 
-        if ('GBM' in self.raw_dir) or ('KIRC' in self.raw_dir) or ('Endometrial' in self.raw_dir):
-            # Obtain Phenotype Map
-            self.HeatmapMarkerExpression(clusters[0],IndexAndClass,num_classes,0,'Phenotypes')        
-            self.HeatmapMarkerExpression(clusters[1],IndexAndClass,num_classes,0,'Neighborhoods')
-        else:
-            # Obtain cell-types examples
-            self.ObtainPhenoExamples(IndexAndClass,clusters)    
-            
+        # Obtain cell-types examples
+        self.ObtainPhenoExamples(IndexAndClass,clusters)        
         
         # Cell-types abundances
         heatmapClusterPresence, labels = self.clusterPresence(clusters, IndexAndClass, num_classes,0, isTraining=False)                        
