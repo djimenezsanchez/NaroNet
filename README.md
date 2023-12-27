@@ -46,6 +46,10 @@ DATASET_DATA_DIR/
                 ├── image_1.tiff
                 ├── image_2.tiff
                 └── ...
+	├── Masks/
+                ├── image_1.tiff
+                ├── image_2.tiff
+                └── ...
         └── Experiment_Information/
                 ├── Channels.txt                
                 ├── Image_Labels.xlsx
@@ -53,6 +57,7 @@ DATASET_DATA_DIR/
 		
 ```
 In the 'Raw_Data/Images' folder we expect multiplex image data consisting of multi-page '.tiff' files with one channel/marker per page.
+In the 'Raw_Data/Masks' folder put masks with the same size as the images with the same name, with 1's for the pixels that should be analyzed and 0's for the pixels that should be ignored.
 In the 'Raw_Data/Experiment_Information' two files are expected:
 * Channels.txt contains per row the name of each marker/channel present in the multiplex image. In case the name of the row is 'None' it will be ignored and not loaded from the raw image. See example [file](https://github.com/djimenezsanchez/NaroNet/blob/main/examples/Channels.txt) or example below:
 ```bash
